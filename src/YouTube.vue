@@ -119,6 +119,12 @@ const YouTube = defineComponent({
   },
   methods: {
     initPlayer(): void {
+      // eslint-disable-next-line no-undef
+      if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
+        setTimeout(() => this.initPlayer(), 500)
+        return
+      }
+      
       this.initiated = true
       // eslint-disable-next-line no-undef
       this.player = new YT.Player(this.$refs.youtube as HTMLElement, {
